@@ -78,8 +78,16 @@ angular.module('zolotestApp')
         }else{
           
           changed_date = 1;
-          changed_month = parseInt($scope.now.month) + 1;
-          changed_year =  $scope.now.fullyear;
+          //year change 
+          if($scope.now.month<11){
+
+            changed_month = parseInt($scope.now.month) + 1;
+            changed_year =  $scope.now.fullyear;
+          }
+          else{
+            changed_month = 0;
+            changed_year = parseInt($scope.now.fullyear) + 1;
+          }
         }
       
       }else{
@@ -89,11 +97,20 @@ angular.module('zolotestApp')
           changed_year =  $scope.now.fullyear; 
         }else{
 
-          var lastmonthdays = $scope.daysinmonth($scope.now.month-1,$scope.now.year);
+          if($scope.now.month>0){
 
-          changed_date = lastmonthdays.length;
-          changed_month = parseInt($scope.now.month) - 1;
-          changed_year =  $scope.now.fullyear;
+            var lastmonthdays = $scope.daysinmonth($scope.now.month-1,$scope.now.year);
+
+            changed_date = lastmonthdays.length;
+            changed_month = parseInt($scope.now.month) - 1;
+            changed_year =  $scope.now.fullyear;
+          }else{
+            changed_date = 31;
+            changed_month = 11;
+            changed_year = parseInt($scope.now.fullyear) - 1;
+
+          }
+
 
            
         }
