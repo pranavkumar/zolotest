@@ -7,6 +7,40 @@
 
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
+var Event = require('../api/event/event.model');
+var _ = require('lodash');
+
+var fs = require('fs');
+
+var content = JSON.parse(fs.readFileSync('./server/api/event/calendar_assignment.json'));
+
+
+Event.find({},function(err,data){
+  if(data.length==0 || data==null){
+    _.forEach(content,function(c){
+      var temp_start = new Date(c.startTime);
+      var temp_end = new Date(c.endTime);
+
+      var payload = {startTime:temp_start.getTime(),
+                    startDate: temp_start.getDate(),
+                    startMonth: temp_start.getMonth(),
+                    startYear: temp_start.getFullYear(),
+                    endTime: temp_end.getTime(),
+                    endDate: temp_end.getDate(),
+                    endMonth: temp_end.getMonth(),
+                    endYear: temp_end.getFullYear(),
+                    title: c.title};
+      console.log(payload);
+      Event.create(payload,function(err,event){
+        if(err){
+          console.log(err);
+        }
+      });
+    });
+
+  }
+});
+
 
 Thing.find({}).remove(function() {
   Thing.create({

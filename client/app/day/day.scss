@@ -52,12 +52,19 @@
     background-color:lighten(#7d3f98,20%);
     padding:2%;
     font-size:20px;
-    
+
     .title{
 
     }
     .timing{
         font-size:16px;
     }
+}
+
+.home{
+    color:white;
+}
+.home:hover{
+    color:black;
 }    
 

@@ -7,8 +7,11 @@ var content = JSON.parse(fs.readFileSync('./server/api/event/calendar_assignment
 
 
 
+
 // Get list of events
 exports.index = function(req, res) {
+  
+
   /*Event.find(function (err, events) {
     if(err) { return handleError(res, err); }
     return res.json(200, events);
@@ -51,7 +54,13 @@ exports.show = function(req, res) {
 
     console.log(startDate+" "+startMonth+" "+startYear);
     
-  
+  Event.find({},function(err,data){
+    if(data.length==0){
+
+    }
+  })
+
+
   Event.find({startDate:startDate,startMonth:startMonth,startYear:startYear}, function (err, event) {
     
     if(err) { return handleError(res, err); }
