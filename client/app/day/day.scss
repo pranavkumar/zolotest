@@ -1,0 +1,63 @@
+.hour-element{
+    min-height:80px;
+    margin-bottom:2%;
+    overflow-y:auto;
+    
+    .label{
+        font-size:18px;
+        color:black;
+        font-weight:normal;
+        padding:3%;
+    }
+    .main{
+    background-color:lighten(#00a78e,10%);
+    min-height:inherit;
+    padding-left:0px;
+    padding-right:0px;
+    overflow-y:auto;    
+    }
+}
+
+.day-element{
+    min-height:400px;
+    background-color:lighten(red,25%);
+    padding:2%;
+    position:fixed;
+    top:0%;
+    left: 2%;
+    
+    .month{
+        text-align:center;
+    }
+    .date{
+         text-align:center;   
+        .huge{
+            font-size:100px;
+            color:white;
+            .prev{
+                 pointer:cursor;
+            };
+            .next{
+                 pointer:cursor;
+            };    
+        }    
+    }
+    .year{
+        text-align:center;
+    }
+}
+
+.event-element{
+    color:white;
+    background-color:lighten(#7d3f98,20%);
+    padding:2%;
+    font-size:20px;
+    
+    .title{
+
+    }
+    .timing{
+        font-size:16px;
+    }
+}    
+

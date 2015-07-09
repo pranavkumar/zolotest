@@ -1,0 +1,32 @@
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12" style="padding-top:2%">
+    
+    <div class="col-md-3 day-element">
+      <div class="month">
+        <h1><i class="fa fa-angle-left prev" ng-click="changeMonth(false)"></i>&nbsp;{{months_label[now.month]}}&nbsp;<i class="fa fa-angle-right next" ng-click="changeMonth(true)"></i></h1>
+      </div>
+      <div class="date">
+        <h1 class="huge">{{now.date}}</h1>  
+      </div>
+      <div class="year">
+        <h1>{{now.fullyear}}</h1>
+        <p></p>
+      </div>  
+    </div>
+    <div class="col-md-9 col-md-offset-3">
+      <ul class="list-unstyled list-inline">
+        <li ng-repeat="day in days track by $index" class="day-tile" ng-click="navDay(day)">
+          
+          <div class="body">{{day.day.getDate() || "*"}}</div>
+        </li>
+      </ul>    
+
+    </div>
+    </div>
+  </div>
+
+</div>
+

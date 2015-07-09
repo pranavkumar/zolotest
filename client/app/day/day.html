@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12" style="padding-top:2%">
+    
+    <div class="col-md-3 day-element">
+      <div class="month">
+        
+        <h1>{{months_label[now.month]}}</h1>
+
+      </div>
+      <div class="date">
+        <h1 class="huge"><i class="fa fa-angle-left prev" ng-click="changeDate(false)"></i>&nbsp;{{now.date}}&nbsp;<i class="fa fa-angle-right next" ng-click="changeDate(true)"></i></h1>  
+      </div>
+      <div class="year">
+        <h1>{{now.fullyear}}</h1>
+      </div>  
+    </div>
+    <div class="col-md-9 col-md-offset-3">
+      <ul class="list-inline">
+        <a href="#">Longest</a>
+        <a href="#">Shortest</a>
+        <a href="#">Edited</a>
+        <a href="#">Deleted</a>
+      </ul>
+      <ul class="list-unstyled">
+        <li class="hour-element" ng-repeat="hour in hours" id="{{'hour'}}{{$index}}">
+          <div class="col-md-2 label">
+            {{hour.label}}
+          </div>
+          <div class="col-md-10 main" ng-init="wh=$index;">
+            <ul class="list-unstyled" style="overflow-y:auto">
+              
+              <li ng-repeat="e in events | orderBy:'startTime'" ng-init="id=uniqid()">
+                <div ng-if="e.anchor>=wh && e.anchor<(wh+1)" class="event-element" id="{{id}}">
+                  
+                  <p class="title"><i class="fa fa-calendar"></i>&nbsp;{{e.title}}</p>
+                  <p class="timing"><i class="fa fa-clock-o"></i>&nbsp;From &nbsp;{{humanTime(e.startTime)}} To &nbsp;{{humanTime(e.endTime)}}</p>  
+                </div>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+    </div>
+  </div>
+
+</div>
