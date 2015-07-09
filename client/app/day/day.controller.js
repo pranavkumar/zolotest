@@ -1,10 +1,12 @@
 'use strict';
 
 angular.module('zolotestApp')
-  .controller('DayCtrl', function ($scope,$stateParams,$http) {
+  .controller('DayCtrl', function ($scope,$stateParams,$http,$location) {
     $scope.message = 'Hello';
 
     var event_index = 0;
+
+    $scope.days = [];
 
     $scope.hours=[];
 
@@ -19,6 +21,20 @@ angular.module('zolotestApp')
                   month: parseInt(temp[1]-1),
                   fullyear: parseInt(temp[2]),
                   year: null};
+
+
+    $scope.daysinmonth = function(month,year){
+     var date = new Date(year, month, 1);
+     var days = [];
+     while (date.getMonth() === month) {
+        days.push(new Date(date));
+        date.setDate(date.getDate() + 1);
+     }
+     return days;    
+   }
+
+   $scope.days = $scope.daysinmonth($scope.now.month,$scope.now.year);
+
 
 
 
@@ -47,9 +63,46 @@ angular.module('zolotestApp')
     }
 
 
-    $scope.changeDate = function(){
+    $scope.changeDate = function(flag){
+      var changed_date,
+          changed_month,
+          changed_year;
 
-      console.log("wanna change date??");
+      if(flag==true){
+     
+        if($scope.now.date<$scope.days.length){
+          
+          changed_date = parseInt($scope.now.date) + 1;
+          changed_month = $scope.now.month;
+          changed_year =  $scope.now.fullyear;
+        }else{
+          
+          changed_date = 1;
+          changed_month = parseInt($scope.now.month) + 1;
+          changed_year =  $scope.now.fullyear;
+        }
+      
+      }else{
+        if($scope.now.date>1){
+          changed_date = parseInt($scope.now.date) - 1;
+          changed_month = $scope.now.month;
+          changed_year =  $scope.now.fullyear; 
+        }else{
+
+          var lastmonthdays = $scope.daysinmonth($scope.now.month-1,$scope.now.year);
+
+          changed_date = lastmonthdays.length;
+          changed_month = parseInt($scope.now.month) - 1;
+          changed_year =  $scope.now.fullyear;
+
+           
+        }
+      }
+
+      console.log(changed_date+" "+changed_month+" "+changed_year);  
+      var link = "/day/"+changed_date+"-"+(parseInt(changed_month)+1)+"-"+changed_year;
+      console.log(link);
+      $location.url(link);
     }
 
     $scope.humanTime = function(timestamp){
