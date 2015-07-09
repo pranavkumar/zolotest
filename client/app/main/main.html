@@ -16,7 +16,7 @@
         <h1 class="huge">{{now.date}}</h1>  
       </div>
       <div class="year">
-        <h1>{{now.fullyear}}</h1>
+        <h1><i class="fa fa-angle-left prev" ng-click="changeYear(false)"></i>&nbsp;{{now.fullyear}}&nbsp;<i class="fa fa-angle-right next" ng-click="changeYear(true)"></i></h1>
         <p></p>
       </div>  
     </div>

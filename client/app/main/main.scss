@@ -64,6 +64,14 @@
     }
     .year{
         text-align:center;
+        .prev{
+            color:white;
+            cursor:pointer;
+        }
+        .next{
+            color:white;
+            cursor:pointer;
+        }
     }
 }
 

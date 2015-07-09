@@ -21,6 +21,16 @@ angular.module('zolotestApp')
 
     console.log(new Date().getFullYear());
 
+    $scope.changeYear = function(flag){
+      if(flag==true){
+        $scope.now.fullyear = parseInt($scope.now.fullyear)+1;
+      }else{
+        $scope.now.fullyear = parseInt($scope.now.fullyear)-1;
+      }
+      $scope.tiledays($scope.now.month,$scope.now.fullyear);
+
+    }
+
     $scope.changeMonth=function(flag){
       if(flag==true){
         if($scope.now.month<11){
